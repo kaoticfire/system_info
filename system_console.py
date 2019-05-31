@@ -5,21 +5,7 @@ from os import getenv, name, system
 from platform import release, uname
 from socket import getfqdn, gethostbyname_ex, gethostname
 import platform.system as ps
-from pypsexec.client import Client
 from wmi import WMI
-
-
-def connection(exe, computer, user_pass):
-    user_id = getenv('UserName')
-    c = Client(computer, username=user_id, password=user_pass)
-    c.connect()
-    try:
-        c.create_service()
-        c.run_executable(exe)
-    finally:
-        c.cleanup()
-        c.disconnect()
-    return
 
 
 class SystemInfo():
@@ -99,4 +85,3 @@ if __name__ == '__main__':
     else:
         _ = system('clear')
         print('This requires a windows operating system.')
-
